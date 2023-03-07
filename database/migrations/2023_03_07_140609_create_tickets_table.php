@@ -14,8 +14,8 @@ class CreateTicketsTable extends Migration
     public function up()
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id'); //$ Creazione FK
-            $table->foreign('user_id')->references('id')->on('users'); //$ Relazione FK
+            //$table->unsignedBigInteger('user_id')->after('id'); //$ Creazione FK
+            //$table->foreign('user_id')->references('id')->on('users'); //$ Relazione FK
             $table->id();
             $table->string('subject', 100);
             $table->string('priority', 100);
