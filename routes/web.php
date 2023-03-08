@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +16,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/user/{id}', function ($id) {
+    return view('user', [
+        'id' => $id,
+        'name' => 'Ruma',
+    ]);
 });
 
 Auth::routes();
 
+Route::get('/user',
+[App\Http\Controllers\UserController::class, 'index'])
+->name('home');
+
 Route::get('/home',
 [App\Http\Controllers\Admin\HomeController::class, 'index'])
-->name('home'); //% Pagina home
+->name('home');
+ //% Pagina home, una volta loggato
 
+
+//TODO ROTTE MIDDLEWARE DA FAR FUNZIONARE nella sezione Admin
 Route::middleware('auth')
     ->namespace('Admin')
     ->name('admin.')
@@ -32,3 +51,4 @@ Route::middleware('auth')
         Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
         //Route::resource('tickets', 'TicketController');
     });
+
