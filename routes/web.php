@@ -22,4 +22,13 @@ Auth::routes();
 
 Route::get('/home',
 [App\Http\Controllers\Admin\HomeController::class, 'index'])
-->name('home');
+->name('home'); //% Pagina home
+
+Route::middleware('auth')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function() {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::resources('tickets', 'TicketController');
+    });
