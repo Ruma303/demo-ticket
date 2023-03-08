@@ -30,5 +30,5 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function() {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::resources('tickets', 'TicketController');
+        Route::resource('tickets', 'TicketController');
     });
