@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -29,6 +29,6 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function() {
-        Route::get('/', 'HomeController@index')->name('home');
-        Route::resource('tickets', 'TicketController');
+        Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
+        //Route::resource('tickets', 'TicketController');
     });
