@@ -29,8 +29,6 @@ Route::get('/home',
 ->name('home');
  //% Pagina home, una volta loggato
 
-
-//TODO ROTTE MIDDLEWARE DA FAR FUNZIONARE nella sezione Admin
 Route::middleware('auth')
     //->namespace('Admin')
     ->name('admin.')

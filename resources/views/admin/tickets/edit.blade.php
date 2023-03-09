@@ -4,6 +4,7 @@
     <form method="post" action="{{ route('admin.tickets.update', ['ticket' => $ticket]) }}" novalidate>
         @csrf()
         @method('PUT')
+        {{-- FIXME: NON MANTIENE I VECCHI VALUE NEI CAMPI --}}
         <label for="subject" class="subject-title">Change subject: </label>
         <input type="text" class="form-control" id="subject" name ="subject" value="{{ old('subject') }}"
         placeholder="Edit the subject of the ticket here">

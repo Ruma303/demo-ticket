@@ -14,6 +14,7 @@
             <tr>
                 <th scope="row">{{ $ticket->id }}</th>
                 <td>{{ $ticket->subject }}</td>
+                {{-- FIXME: non vengono mostrare le priority --}}
                 <td>{{ $ticket->prority }}</td>
                 <td>{{ $ticket->message }}</td>
 
@@ -24,9 +25,13 @@
                 <td>
                     <a class="btn btn-warning" href="{{route('admin.tickets.edit', ['ticket' => $ticket])}}">Edit</a>
                 </td>
-                {{-- <td>
-                    <a class="btn btn-danger" href="{{route('admin.tickets.delete', ['ticket' => $ticket])}}">Delete</a>
-                </td> --}}
+                <td>
+                    <form action="{{ route('admin.tickets.destroy', ['ticket' => $ticket]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

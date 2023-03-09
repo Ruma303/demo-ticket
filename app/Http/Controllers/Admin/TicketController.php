@@ -80,7 +80,12 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        //
+        $data = $request->all();
+        $ticket->subject  = $data['subject'];
+        $ticket->priority  = $data['priority'];
+        $ticket->message  = $data['message'];
+        $ticket->update();
+        return redirect()->route('admin.tickets.show', $ticket->id);
     }
 
     /**
@@ -91,6 +96,7 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
+        return redirect()->route('admin.tickets.index')->with('deleted', $ticket);
     }
 }
