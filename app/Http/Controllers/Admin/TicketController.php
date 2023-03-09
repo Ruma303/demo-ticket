@@ -40,7 +40,13 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $ticket = new Ticket;
+        $ticket->subject  = $data['subject'];
+        $ticket->priority  = $data['priority'];
+        $ticket->message  = $data['message'];
+        $ticket->save();
+        return redirect()->route('admin.tickets.show', $ticket->id);
     }
 
     /**
