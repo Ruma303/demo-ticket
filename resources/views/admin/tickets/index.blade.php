@@ -19,7 +19,6 @@
             <tr>
                 <th scope="row">{{ $ticket->id }}</th>
                 <td>{{ $ticket->subject }}</td>
-                {{-- FIXME: non vengono mostrare le priority --}}
                 <td>{{ $ticket->priority }}</td>
                 <td>{{ $ticket->message }}</td>
 
@@ -41,5 +40,6 @@
         @endforeach
     </tbody>
 </table>
+{{ $tickets->links() }}
 
 @endsection
