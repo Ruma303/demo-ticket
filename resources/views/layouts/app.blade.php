@@ -23,35 +23,21 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- {{ config('app.name', 'Laravel') }} --}}
-                    Home
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Tickets
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">
-                                {{-- inserisci in href questo appena funziona {{ route('admin.tickets.index') }} --}}
-                                   Index
+                    <div class="d-flex justify-content-center gap-3">
+                            <button class="btn btn-primary">
+                                <a class="dropdown-item" href="{{ route('admin.tickets.index') }}">
+                                    My Tickets
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                {{-- inserisci in href questo appena funziona {{ route('admin.tickets.create') }} --}}
-                                    Create
-                                 </a>
-                            </div>
-                        </li>
-                    </ul>
-
+                            </button>
+                            <button class="btn btn-success">
+                                <a class="dropdown-item" href="{{ route('admin.tickets.create') }}">
+                                    Create Ticket
+                                </a>
+                            </button>
+                        </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
+    //TODO crea array validazioni.
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +29,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tickets.create');
     }
 
     /**
@@ -50,7 +51,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
+        return view('admin.tickets.show', compact('ticket'));
     }
 
     /**
