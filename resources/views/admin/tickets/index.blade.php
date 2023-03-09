@@ -1,5 +1,10 @@
 @extends('layouts.app');
 @section('content')
+    @if(session('deleted'))
+        <div class="alert alert-success">
+            Ticket {{ session('deleted')->subject }} deleted
+        </div>
+    @endif
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +20,7 @@
                 <th scope="row">{{ $ticket->id }}</th>
                 <td>{{ $ticket->subject }}</td>
                 {{-- FIXME: non vengono mostrare le priority --}}
-                <td>{{ $ticket->prority }}</td>
+                <td>{{ $ticket->priority }}</td>
                 <td>{{ $ticket->message }}</td>
 
                 <!-- Bottoni -->

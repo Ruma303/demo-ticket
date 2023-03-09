@@ -6,7 +6,7 @@
         @method('PUT')
         {{-- FIXME: NON MANTIENE I VECCHI VALUE NEI CAMPI --}}
         <label for="subject" class="subject-title">Change subject: </label>
-        <input type="text" class="form-control" id="subject" name ="subject" value="{{ old('subject') }}"
+        <input type="text" class="form-control" id="subject" name ="subject" value="{{old('subject', $ticket->subject)}}"
         placeholder="Edit the subject of the ticket here">
 
 
