@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class TicketController extends Controller
 {
     //TODO crea array validazioni.
+    private $validations = [
+        'subject' => 'required|string|max:100',
+        'priority' => 'required|string|max:100',
+        'message' => 'required|string',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +47,7 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->validations);
         $data = $request->all();
         $ticket = new Ticket;
         $ticket->subject  = $data['subject'];
@@ -80,6 +88,7 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
+        $request->validate($this->validations);
         $data = $request->all();
         $ticket->subject  = $data['subject'];
         $ticket->priority  = $data['priority'];
