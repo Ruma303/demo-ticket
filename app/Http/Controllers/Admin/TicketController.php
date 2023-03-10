@@ -49,17 +49,17 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //$path = $request->file('file')->store('uploads', 'public');
+        $filePath = $request->file('file')->storeAs('uploads', 'nome-file', 'public');
         //%Secondo Metodo
-        $filePath = Storage::putFile('public/uploads', $request->file('file'));
+        //dd($filePath);
+        //$filePath = Storage::putFile('public/uploads', $request->file('file'));
         $request->validate($this->validations);
         $data = $request->all();
         $ticket = new Ticket;
         $ticket->subject  = $data['subject'];
         $ticket->priority  = $data['priority'];
         $ticket->message  = $data['message'];
-        $ticket->file = $filePath; //    FIXME il file non viene caricato nella cartella uploads
-        //$ticket->file = file_put_contents($data['file']); non così
+        $ticket->file = $filePath;
         $ticket->save();
         return redirect()->route('admin.tickets.show', $ticket->id);
     }
