@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class TicketController extends Controller
@@ -14,6 +15,7 @@ class TicketController extends Controller
         'subject' => 'required|string|max:100',
         'priority' => 'required|string|max:100',
         'message' => 'required|string',
+        'file' => 'nullable'
     ];
 
     /**
@@ -47,13 +49,17 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        //$path = $request->file('file')->store('uploads', 'public');
+        //%Secondo Metodo
+        $filePath = Storage::putFile('public/uploads', $request->file('file'));
         $request->validate($this->validations);
         $data = $request->all();
         $ticket = new Ticket;
         $ticket->subject  = $data['subject'];
         $ticket->priority  = $data['priority'];
         $ticket->message  = $data['message'];
-        //$ticket->file = $data['file'];
+        $ticket->file = $filePath; //    FIXME il file non viene caricato nella cartella uploads
+        //$ticket->file = file_put_contents($data['file']); non così
         $ticket->save();
         return redirect()->route('admin.tickets.show', $ticket->id);
     }
