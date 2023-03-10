@@ -85,9 +85,26 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ticket $ticket)
+    public function edit(Ticket $ticket, Request $request)
     {
-        return view('admin.tickets.edit', compact('ticket'));
+        /* if (Storage::disk('public')->exists("public/uploads/$request->file")) {
+            //* Prendi il percorso del file
+            $path = Storage::disk('public')->path("public/uploads/$request->file");
+            //* Prendi il contenuto del file
+            $content = file_get_contents($path);
+            //* Ritorna il file con header (per alcune estensioni)
+            return response($content)->withHeaders([
+                 "Content-type" => mime_content_type($path),
+            ]);
+            //* Se il file non esiste
+        } return redirect("/404"); */
+
+        //? Forse devo prima richiedere i dati dal database e non passarli col compact
+        //TODO passare il path nel download
+        $download = Storage::disk('public')->download("percorso");
+        //? Forse passa i dati come array mettendo dentro compact e download
+        return view('admin.tickets.edit', compact('ticket'), $download);
+        //Todo nella view corrispondente mostra un link per scaricare (o bottone)
     }
 
     /**
