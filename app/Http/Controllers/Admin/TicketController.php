@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Ticket;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -49,10 +50,13 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $filePath = $request->file('file')->storeAs('uploads', 'nome-file', 'public');
+        $name = Str::random(40);
+        $file = $request->file('file');
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $newFileName = $name . '.' . $extension;
+        $filePath = $request->file('file')->storeAs('uploads', $newFileName, 'public');
         //%Secondo Metodo
-        //dd($filePath);
-        //$filePath = Storage::putFile('public/uploads', $request->file('file'));
+        //$filePath = Storage::disk('public')->putFileAs('uploads', $file, $newFileName);
         $request->validate($this->validations);
         $data = $request->all();
         $ticket = new Ticket;

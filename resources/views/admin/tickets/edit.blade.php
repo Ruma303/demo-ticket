@@ -35,6 +35,15 @@
                 <option value="Low">Low</option>
         </select>
 
+        {{-- % Edit file --}}
+        <div class="edit-preview-div">
+            <label for="file-title">Edit File:</label>
+            <input type="file" name="file" id="file-tile">
+            <img src="{{ asset('storage/' . $ticket->file) }}" alt="" class="file-preview">
+            {{-- TODO aggiungi bottone scaricamento file --}}
+        </div>
+
+
         {{--TODO Aggiorna metodo old--}}
         <label class="message-title">Change message:</label>
         <textarea name="message" id="message" cols="30" rows="10" value="{{ old('message') }}" class="form-control @error('message') is-invalid @enderror" placeholder="Your message..."></textarea>
