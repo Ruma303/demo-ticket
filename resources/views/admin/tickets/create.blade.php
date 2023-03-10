@@ -10,7 +10,8 @@
     </div>
 @endif
 <div class="create-container">
-    <form method="post" action="{{ route('admin.tickets.store') }}" novalidate class="container">
+    <form method="post" action="{{ route('admin.tickets.store') }}" novalidate class="container"
+    enctype="multipart/form-data">
         @csrf()
         @method('POST')
         <label for="subject" class="subject-title">Subject: </label>
@@ -47,6 +48,8 @@
             </div>
         @enderror
 
+        <label for="file">Upload File:</label>
+        <input type="file" name="file">
 
         <button type="submit" class="btn btn-primary">Create Ticket</button>
     </form>
