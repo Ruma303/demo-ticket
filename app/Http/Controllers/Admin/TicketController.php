@@ -53,6 +53,7 @@ class TicketController extends Controller
         $ticket->subject  = $data['subject'];
         $ticket->priority  = $data['priority'];
         $ticket->message  = $data['message'];
+        $ticket->file = $data['file'];
         $ticket->save();
         return redirect()->route('admin.tickets.show', $ticket->id);
     }
